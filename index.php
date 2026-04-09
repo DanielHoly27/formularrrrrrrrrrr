@@ -26,19 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['odeslat'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobilní Evidence Klientů</title>
+    <title>Hodnocení her dejme tomu</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <div class="container">
     <div class="box">
-        <h2>Nový klient</h2>
+        <h2></h2>
         <form method="post">
-            <input type="text" name="jmeno" placeholder="Jméno" required>
-            <input type="text" name="prijmeni" placeholder="Příjmení" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="komentar" placeholder="Napište vzkaz..." rows="3" required></textarea>
+            <input type="text" name="jmeno" placeholder="Jméno (Přezdívka) *" required>
+            <input type="email" name="email" placeholder="Email *" required>
+            <input type="text" name="prijmeni" placeholder="Název hry *" required>
+            <textarea name="komentar" placeholder="Text recenze *" rows="3" required></textarea>
             <button type="submit" name="odeslat">Odeslat</button>
         </form>
     </div>
@@ -56,11 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['odeslat'])) {
             echo "<strong>" . htmlspecialchars($row["jmeno"]) . " " . htmlspecialchars($row["prijmeni"]) . "</strong>";
             echo "<br><span style='color:#555; font-size:0.9em;'>" . htmlspecialchars($row["email"]) . "</span>";
             echo "<p style='margin: 10px 0;'>" . nl2br(htmlspecialchars($row["komentar"])) . "</p>";
-            echo "<div class='meta'>📅 " . date("d.m.Y H:i", strtotime($row["vytvoreno"])) . "</div>";
+            echo "<div class='meta'>" . date("d.m.Y H:i", strtotime($row["vytvoreno"])) . "</div>";
             echo "</div>";
         }
     } else {
-        echo "<p style='text-align:center; color:#888;'>Zatím žádní klienti.</p>";
+        echo "<p style='text-align:center; color:#888;'>Zatím žádné recenze.</p>";
     }
     $conn->close();
     ?>
